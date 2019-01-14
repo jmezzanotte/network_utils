@@ -101,7 +101,7 @@ def get_devices():
         devices = stdout.split('\n\n')
         ret_dict = {}
 
-        for index, device in enumerate(devices):
+        for device in devices:
 
             key = re.match(device_name_pattern, device)
 
@@ -109,12 +109,12 @@ def get_devices():
                 key = key.group(1)
                 temp = {key: {}}
 
-                for target_device in devices[index].splitlines():
+                for target_device in device.splitlines():
                     find = re.match(pattern, target_device)
 
                     if find:
 
-                        temp[key].update({find.group(1) : find.group(3)})
+                        temp[key].update({find.group(1): find.group(3)})
 
                         ret_dict.update(temp)
 
